@@ -31,3 +31,6 @@ app.use('/api', accountRoutes);
 app.listen(config.port, () => {
   console.log(`Server running on port ${config.port}`);
 });
+app.get('/', (req, res) => {
+  res.send('✅ API is running!');
+});
