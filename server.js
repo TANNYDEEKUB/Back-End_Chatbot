@@ -13,9 +13,13 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Connect to MongoDB
-mongoose.connect(config.mongoUri)
-  .then(() => console.log('✅ Connected to MongoDB'))
-  .catch(err => console.error('❌ Failed to connect to MongoDB:', err));
+mongoose.connect(config.mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 10000, // รอเชื่อมต่อ 10 วินาที
+})
+.then(() => console.log('✅ Connected to MongoDB'))
+.catch(err => console.error('❌ Failed to connect to MongoDB:', err));
 
 app.use(cors());
 app.use(bodyParser.json());
